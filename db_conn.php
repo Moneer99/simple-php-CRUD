@@ -2,7 +2,7 @@
 
 $serverName = 'localhost';
 $userName = 'root';
-$Pass = 'moneer90';
+$pass = 'mypass';
 $dbName = 'crud';
 
 // using OOP
