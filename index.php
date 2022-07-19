@@ -16,7 +16,24 @@
 </head>
 
 <body>
+
     <?php require_once "process.php"; ?>
+
+    <?php
+
+    if(isset($_SESSION['message'])): ?>
+    <div class="alert alert-<?= $_SESSION['msg_type']?>">
+
+        <?php
+
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+    endif;
+    ?>
+
+    </div>
+
+
     <div class="container">
         <!--get data from database -->
         <?php
@@ -38,7 +55,10 @@
                 <tr>
                     <td><?= ($row['name']) ?></td>
                     <td><?= ($row['location']) ?></td>
-                    <td></td>
+                    <td>
+                        <a href="index.php?edit=<?= $row['id'] ?>" class="btn btn-primary">Edit</a>
+                        <a href="process.php?delete=<?= $row['id'] ?>" class="btn btn-danger">Delete</a>
+                    </td>
                 </tr>
 
                 <?php endwhile; ?>
