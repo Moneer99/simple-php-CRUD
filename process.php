@@ -1,8 +1,12 @@
 <?php
 
+include 'db_conn.php';
+
 session_start();
 
-include 'db_conn.php';
+$name= '';
+$location = '';
+$update = true;
 
 if (isset($_POST['save'])) {
     // print_r ($_POST);
@@ -32,4 +36,20 @@ if(isset($_GET['delete'])){
     $_SESSION['msg_type'] = 'danger';
 
     header('location:index.php');
+}
+
+if(isset($_GET['edit'])){
+
+    $id = $_GET['edit'];
+    // Get data from database depending on id
+    $result = $mysqli->query("SELECT * FROM data WHERE id=$id") or die($mysqli->error);
+
+    if ($result){
+        $update = true;
+        $row = $result->fetch_array();
+        $name = $row['name'];
+        $location = $row['location'];
+
+    }
+
 }

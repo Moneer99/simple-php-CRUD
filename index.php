@@ -18,6 +18,8 @@
 <body>
 
     <?php require_once "process.php"; ?>
+    <!-- <?php  var_dump($_GET['']); ?> -->
+
 
     <?php
 
@@ -78,14 +80,21 @@
             <form action="process.php" method="POST">
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Enter your name">
+                    <input type="text" value="<?php  echo $name; ?>" name="name" class="form-control"
+                        placeholder="Enter your name">
                 </div>
                 <div class="form-group">
                     <label>Location</label>
-                    <input type="text" name="location" class="form-control" placeholder="Enter your location">
+                    <input type="text" value="<?php echo $location;?>" name="location" class="form-control"
+                        placeholder="Enter your location">
                 </div>
                 <div class="form-group">
+
+                    <?php if($update): ?>
+                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                    <?php else: ?>
                     <button type="submit" name="save" class="btn btn-primary">Save</button>
+                    <?php endif; ?>
                 </div>
             </form>
         </div>
