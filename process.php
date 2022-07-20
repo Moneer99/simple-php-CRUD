@@ -6,7 +6,7 @@ session_start();
 
 $name= '';
 $location = '';
-$update = true;
+$update = false;
 
 if (isset($_POST['save'])) {
     // print_r ($_POST);
@@ -51,5 +51,19 @@ if(isset($_GET['edit'])){
         $location = $row['location'];
 
     }
+}
 
+if(isset($_POST['update'])){
+
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $locaction = $_POST['location'];
+
+    $mysqli->query("UPDATE data SET name='$name',location='$locaction'WHERE id='$id'")or
+    die($mysqli->error);
+
+    $_SESSION['message'] = 'Record has been successfully updat';
+    $_SESSION['msg_type'] = 'warning';
+
+    header('location:index.php');
 }
